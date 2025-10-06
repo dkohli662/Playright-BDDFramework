@@ -22,14 +22,24 @@ def login_valid(page, login_obj, username, password):
 
 @then(parsers.parse('login should be "{expected_result}"'))
 def login_scenarios(page,expected_result ):
+    login_obj = LoginPage(page)
+
     if expected_result=="pass":
-        page.wait_for_url("https://automationexercise.com/", timeout=10000)
+        page.wait_for_url("https://automationexercise.com/")
         print("logged in success")
     else:
-        login_obj = LoginPage(page)
-        expect(login_obj.error_message).to_be_visible()
-        expect(login_obj.error_message).to_have_text("Your email or password is incorrect!")
-        print("error message received")
+
+        try:
+            page.wait_for_selector("p:has-text('Your email or password is incorrect!')", timeout=15000)
+            expect(login_obj.error_message).to_be_visible()
+            print("Login failed as expected - Error message displayed")
+        except Exception:
+            print("Error message not visible. Debugging below:")
+            print(page.content())  # print full page HTML for analysis
+            raise
+
+
+
 
 
 

@@ -16,8 +16,7 @@ class LoginPage:
         self.page.fill(self.email, username)
         self.page.fill(self.password, password)
         self.page.click(self.submit)
-        self.page.goto("https://automationexercise.com/", wait_until="domcontentloaded")
-        print("logged in success")
+        return self.page.url
 
 
 
