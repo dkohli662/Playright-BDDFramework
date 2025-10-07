@@ -1,7 +1,7 @@
 import pytest
 
-from BDDFramework.Pages.Login import LoginPage
-from BDDFramework.Pages.products import Products
+from .Pages.Login import LoginPage
+from .Pages.products import Products
 
 
 @pytest.fixture

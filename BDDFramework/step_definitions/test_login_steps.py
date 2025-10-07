@@ -5,7 +5,7 @@ from playwright.sync_api import expect
 from pytest_bdd import scenarios, given, when, then, parsers
 from pytest_playwright.pytest_playwright import page
 
-from BDDFramework.Pages.Login import LoginPage
+from ..Pages.Login import LoginPage
 
 scenarios("../features/login.feature")
 

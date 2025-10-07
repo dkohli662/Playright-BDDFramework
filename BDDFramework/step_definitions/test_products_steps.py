@@ -2,7 +2,7 @@ from operator import index
 
 from pytest_bdd import scenarios, given, when, then
 
-from BDDFramework.Pages.Login import LoginPage
+from ..Pages.Login import LoginPage
 
 scenarios("../features/products.feature")
 
