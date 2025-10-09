@@ -104,6 +104,41 @@ def cartClick(page, product_obj):
 def cartList(page, product_obj):
     product_obj.getting_cart_items()
 
+@given('I am on the Products page')
+def product_page2(page, product_obj):
+    product_obj.navigate_to_products()
+
+@when('I click on the "WOMEN" category link & click on the "DRESS" sub-category link')
+def categoryClicked(page, product_obj):
+    product_obj.clickinOnCategory()
+    print("women category & Dress subcategory clicked")
+
+
+@then('the page URL should contain "/category_products/1"')
+def validateUrl(page):
+    assert "https://automationexercise.com/category_products/1" in page.url
+    print("Dress sub category page loaded")
+
+@then('I should see a heading with text "WOMEN - DRESS PRODUCTS"')
+def validateHeaderText(page, product_obj):
+    text=product_obj.headerText()
+    print("Header text is :", text)
+
+@then('I should see only products belonging to the "WOMEN - DRESS" category')
+def getResult(page, product_obj):
+    names=product_obj.dressResult()
+    assert len(names)>0, "No products found for this category"
+    for n in names:
+        assert "dress" in n.lower()
+        print("Product list with Dress :", names)
+
+
+
+
+
+
+
+
 
 
 

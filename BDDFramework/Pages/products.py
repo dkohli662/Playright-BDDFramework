@@ -16,7 +16,16 @@ class Products:
         self.model=page.locator("div.modal-content")
         self.continue_btn=page.locator("button:has-text('Continue Shopping')")
         self.cart_btn=page.locator("a[href='/view_cart']").first
-        self.cart_items=page.locator("#cart_info_table tbody tr")
+        self.cart_items=page.locator("#cart_info_table tbody tr td.cart_description")
+        self.cat1=page.locator("#accordian").filter(has_text="Women")
+        self.cat2=page.locator("#accordian").filter(has_text="Men")
+        self.cat3=page.locator("#accordian").filter(has_text="Kids")
+        self.dress_subcategory = page.locator("#Women a", has_text="Dress")
+
+        self.brand1=page.locator(".brands-name").filter(has_text="Polo")
+        self.brand2=page.locator(".brands-name").filter(has_text="Babyhug")
+        self.allProduct=page.locator(".productinfo p")
+
 
     def navigate_to_products(self):
         if "/products" not in self.page.url:
@@ -106,6 +115,23 @@ class Products:
         for i in range(cart_count):
             item_text = self.cart_items.nth(i).inner_text().strip()
             print(f"item at {i} is {item_text}")
+
+    def clickinOnCategory(self):
+        women_category = self.page.locator("#accordian .panel a", has_text="Women")
+        women_category.click()
+        dress_locator = self.page.locator("#Women a", has_text="Dress")
+        dress_locator.wait_for(state="visible", timeout=10000)
+        dress_locator.click()
+        self.page.wait_for_url("https://automationexercise.com/category_products/1")
+
+    def headerText(self):
+        return self.page.locator("div.features_items > h2").text_content()
+
+    def dressResult(self):
+        return self.allProduct.all_text_contents()
+
+
+
 
 
 

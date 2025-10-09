@@ -34,6 +34,14 @@ Feature: Products Page functionality
     And clicks Cart button
     Then the cart page should list those products
 
+  Scenario: Filter products by a specific Category
+    Given I am on the Products page
+    When I click on the "WOMEN" category link & click on the "DRESS" sub-category link
+    Then the page URL should contain "/category_products/1"
+    And I should see a heading with text "WOMEN - DRESS PRODUCTS"
+    And I should see only products belonging to the "WOMEN - DRESS" category
+
+
 
 
 
