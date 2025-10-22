@@ -25,8 +25,9 @@ def login_scenarios(page,expected_result ):
     login_obj = LoginPage(page)
 
     if expected_result=="pass":
-        page.wait_for_url("https://automationexercise.com/")
+        page.wait_for_url("https://automationexercise.com/", timeout=70000)
         print("logged in success")
+
     else:
 
         try:

@@ -97,7 +97,7 @@ def addProducts(product_obj):
 
 @when('clicks Cart button')
 def cartClick(page, product_obj):
-    product_obj.clicking_on_cart(page)
+    product_obj.clicking_on_cart()
     print("cart page loaded")
 
 @then('the cart page should list those products')
